@@ -2,18 +2,19 @@ import React from 'react';
 import SafetyRulesGrid from '../components/SafetyRulesGrid';
 import './HomePage.css';
 
-// FUNCTIONAL COMPONENT - Home Page with hooks
+// FUNCTIONAL COMPONENT - Home Page
 function HomePage() {
     return (
-        <div className="home-page">
-            <div className="welcome-section">
-                <h2 className="welcome-title">👋 Welcome Little Friends!</h2>
+        <main className="home-page" role="main">
+            <section className="welcome-section" aria-labelledby="welcome-title">
+                <h2 id="welcome-title" className="welcome-title">👋 Welcome, Friend!</h2>
                 <p className="welcome-text">
-                    Learn how to stay safe on the roads with fun activities!
+                    Let's learn how to stay safe on the roads together.
+                    Take your time and have fun!
                 </p>
-            </div>
+            </section>
             <SafetyRulesGrid />
-        </div>
+        </main>
     );
 }
 

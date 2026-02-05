@@ -46,9 +46,9 @@ class Header extends Component {
             <header className={`header ${isAnimated ? 'animated' : ''}`}>
                 <div className="header-content">
                     <Link to="/" className="logo-link">
-                        <h1 className="title">🚸 Road Safety Basics for Kids! 🚦</h1>
+                        <h1 className="title">🚸 Road Safety for Kids 🚦</h1>
                     </Link>
-                    <p className="subtitle">Learn to be safe on the roads!</p>
+                    <p className="subtitle">Learn to stay safe, one step at a time!</p>
 
                     {/* Navigation using React Router */}
                     <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
@@ -72,7 +72,11 @@ class Header extends Component {
                         </NavLink>
                     </nav>
 
-                    <button className="menu-toggle" onClick={this.toggleMenu}>
+                    <button
+                        className="menu-toggle"
+                        onClick={this.toggleMenu}
+                        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                    >
                         {isMenuOpen ? '✖️' : '☰'}
                     </button>
 

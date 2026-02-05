@@ -1,54 +1,39 @@
+/* Footer Styles - Calming Design */
 .footer {
-    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
-    padding: 40px 20px;
-    margin-top: 50px;
-    border-radius: 30px 30px 0 0;
+    background: linear-gradient(135deg, var(--color-calm-blue) 0%, var(--color-calm-lavender) 100%);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    margin-top: auto;
 }
 
 .footer-content {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
 }
 
 .footer-message {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.footer-message p {
-    color: #ffffff;
-    font-size: 1.5rem;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .footer-emoji {
-    font-size: 2rem;
-    animation: drive 2s linear infinite;
+    font-size: 1.5rem;
+}
+
+.footer-message p {
+    color: var(--color-text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .project-info {
-    color: #FFE66D;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-}
-
-.copyright {
-    color: #95a5a6;
+    color: var(--color-text-secondary);
     font-size: 0.9rem;
 }
 
-@keyframes drive {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(10px);
-    }
+.project-info strong {
+    color: var(--color-text-primary);
 }

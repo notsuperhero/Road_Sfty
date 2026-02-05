@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TrafficLight from '../components/TrafficLight';
+import FeedbackForm from '../components/FeedbackForm';
 import { useFetch } from '../hooks';
 import './LearnPage.css';
 
@@ -14,10 +15,7 @@ function LearnPage() {
 
     // Using useEffect for side effects
     useEffect(() => {
-        // Animation effect when component mounts
         setAnimationClass('fade-in');
-
-        // Cleanup function
         return () => {
             setAnimationClass('');
         };
@@ -29,36 +27,51 @@ function LearnPage() {
     }, [activeTab]);
 
     return (
-        <div className={`learn-page ${animationClass}`}>
+        <main className={`learn-page ${animationClass}`} role="main">
             <h2 className="page-title">📚 Learn Road Safety 📚</h2>
 
-            {/* Tab Navigation */}
-            <div className="tabs">
+            {/* Tab Navigation - Clear Labels */}
+            <nav className="tabs" role="tablist" aria-label="Learning sections">
                 <button
                     className={`tab-btn ${activeTab === 'tips' ? 'active' : ''}`}
                     onClick={() => setActiveTab('tips')}
+                    role="tab"
+                    aria-selected={activeTab === 'tips'}
+                    aria-controls="tips-panel"
                 >
                     💡 Safety Tips
                 </button>
                 <button
                     className={`tab-btn ${activeTab === 'traffic' ? 'active' : ''}`}
                     onClick={() => setActiveTab('traffic')}
+                    role="tab"
+                    aria-selected={activeTab === 'traffic'}
+                    aria-controls="traffic-panel"
                 >
                     🚦 Traffic Lights
                 </button>
-            </div>
+                <button
+                    className={`tab-btn ${activeTab === 'feedback' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('feedback')}
+                    role="tab"
+                    aria-selected={activeTab === 'feedback'}
+                    aria-controls="feedback-panel"
+                >
+                    📝 Share Thoughts
+                </button>
+            </nav>
 
             {/* Tab Content */}
             <div className="tab-content">
                 {activeTab === 'tips' && (
-                    <div className="tips-section">
-                        <h3>📋 Daily Safety Tips (from API)</h3>
+                    <div id="tips-panel" className="tips-section" role="tabpanel" aria-labelledby="tips-tab">
+                        <h3>📋 Safety Tips to Remember</h3>
                         {loading && (
-                            <div className="loading">
-                                <span className="loader">🔄</span> Loading tips...
+                            <div className="loading" role="status" aria-live="polite">
+                                <span className="loader" aria-hidden="true">🔄</span> Loading tips...
                             </div>
                         )}
-                        {error && <p className="error">Error: {error}</p>}
+                        {error && <p className="error" role="alert">Oops! We couldn't load the tips. Try again later.</p>}
                         {tips && (
                             <ul className="tips-list">
                                 {tips.map((tip) => (
@@ -72,9 +85,19 @@ function LearnPage() {
                     </div>
                 )}
 
-                {activeTab === 'traffic' && <TrafficLight />}
+                {activeTab === 'traffic' && (
+                    <div id="traffic-panel" role="tabpanel" aria-labelledby="traffic-tab">
+                        <TrafficLight />
+                    </div>
+                )}
+
+                {activeTab === 'feedback' && (
+                    <div id="feedback-panel" role="tabpanel" aria-labelledby="feedback-tab">
+                        <FeedbackForm />
+                    </div>
+                )}
             </div>
-        </div>
+        </main>
     );
 }
 

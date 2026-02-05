@@ -12,43 +12,43 @@ class SafetyRulesGrid extends Component {
                     id: 1,
                     icon: '👀',
                     title: 'Look Both Ways',
-                    description: 'Always look left, right, then left again before crossing the road!',
-                    color: '#FF6B6B'
+                    description: 'Before crossing, look left, then right, then left again. Take your time!',
+                    color: '#E57373'
                 },
                 {
                     id: 2,
                     icon: '🚶',
-                    title: 'Use Zebra Crossing',
-                    description: 'Always cross at zebra crossings or pedestrian bridges!',
-                    color: '#4ECDC4'
+                    title: 'Use the Crossing',
+                    description: 'Always cross at zebra crossings or bridges. They keep you safe!',
+                    color: '#4DB6AC'
                 },
                 {
                     id: 3,
                     icon: '🚦',
-                    title: 'Follow Traffic Lights',
-                    description: 'Green means Go, Red means Stop! Always obey traffic signals!',
-                    color: '#45B7D1'
+                    title: 'Watch the Lights',
+                    description: 'Green means go, red means stop. Wait for the green walking sign!',
+                    color: '#64B5F6'
                 },
                 {
                     id: 4,
-                    icon: '🚫',
-                    title: 'No Playing on Roads',
-                    description: 'Never play games or sports on the road. Use parks instead!',
-                    color: '#F39C12'
+                    icon: '🏃',
+                    title: 'Play in Safe Places',
+                    description: 'Parks and playgrounds are great for playing. Roads are for walking only!',
+                    color: '#FFB74D'
                 },
                 {
                     id: 5,
                     icon: '👂',
                     title: 'Listen Carefully',
-                    description: 'Keep ears open for vehicles. No headphones while crossing!',
-                    color: '#9B59B6'
+                    description: 'Keep your ears open for cars and bikes. No headphones while crossing!',
+                    color: '#9575CD'
                 },
                 {
                     id: 6,
                     icon: '🦺',
-                    title: 'Be Visible',
-                    description: 'Wear bright colors at night so drivers can see you!',
-                    color: '#E74C3C'
+                    title: 'Wear Bright Colors',
+                    description: 'Bright clothes help drivers see you, especially when it gets dark!',
+                    color: '#E57373'
                 }
             ]
         };
@@ -56,9 +56,9 @@ class SafetyRulesGrid extends Component {
 
     render() {
         return (
-            <section className="safety-rules-section">
-                <h2 className="section-title">🌟 Important Safety Rules 🌟</h2>
-                <div className="rules-grid">
+            <section className="safety-rules-section" aria-labelledby="rules-title">
+                <h2 id="rules-title" className="section-title">🌟 Important Safety Rules 🌟</h2>
+                <div className="rules-grid" role="list">
                     {this.state.rules.map((rule) => (
                         <SafetyRule
                             key={rule.id}

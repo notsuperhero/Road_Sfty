@@ -1,24 +1,31 @@
+/* Safety Rules Grid - Calming Layout */
 .safety-rules-section {
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: var(--spacing-lg) 0;
 }
 
 .section-title {
     text-align: center;
-    font-size: 2.2rem;
-    color: #333;
-    margin-bottom: 40px;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #FFE66D);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-text-primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xl);
 }
 
 .rules-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 10px;
+    gap: var(--spacing-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .rules-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
 }
