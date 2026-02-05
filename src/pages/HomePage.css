@@ -1,0 +1,24 @@
+.home-page {
+    min-height: 100%;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2));
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.welcome-title {
+    font-size: 2rem;
+    color: #FF6B6B;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin-bottom: 10px;
+}
+
+.welcome-text {
+    font-size: 1.2rem;
+    color: #555;
+}

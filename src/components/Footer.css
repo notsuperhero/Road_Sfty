@@ -1,0 +1,54 @@
+.footer {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-radius: 30px 30px 0 0;
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-message p {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.footer-emoji {
+    font-size: 2rem;
+    animation: drive 2s linear infinite;
+}
+
+.project-info {
+    color: #FFE66D;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    color: #95a5a6;
+    font-size: 0.9rem;
+}
+
+@keyframes drive {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+}
