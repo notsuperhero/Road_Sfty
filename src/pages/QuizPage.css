@@ -1,4 +1,4 @@
-/* Quiz Page - Calming Design */
+/* Quiz Page - Calming Design with Levels */
 .quiz-page {
     padding: var(--spacing-lg);
     max-width: 800px;
@@ -13,7 +13,7 @@
     margin-bottom: var(--spacing-xl);
 }
 
-/* Scoreboard - Friendly Display */
+/* Scoreboard */
 .scoreboard {
     display: flex;
     justify-content: center;
@@ -31,6 +31,10 @@
     min-width: 150px;
 }
 
+.score-item.stars {
+    background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+}
+
 .score-label {
     display: block;
     color: var(--color-text-muted);
@@ -45,67 +49,119 @@
     font-weight: 700;
 }
 
-/* Timer - Gentle Warning */
-.timer {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-sm) var(--spacing-md);
-    background: var(--color-bg-highlight);
-    border-radius: var(--radius-md);
-    display: inline-block;
+/* Levels Container */
+.levels-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
 }
 
-.timer.warning {
-    color: #D69E2E;
-    background: rgba(246, 224, 94, 0.2);
-    animation: pulse 1s ease infinite;
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.7;
-    }
-}
-
-/* Quiz Start Section */
-.quiz-start {
-    text-align: center;
-    padding: var(--spacing-xl);
+/* Level Card */
+.level-card {
     background: var(--color-bg-card);
+    border: 3px solid;
     border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-gentle);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.level-card:hover:not(.locked) {
+    transform: translateY(-5px);
     box-shadow: var(--shadow-medium);
 }
 
-.start-text {
+.level-card.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--color-bg-highlight);
+}
+
+.level-card.completed {
+    background: linear-gradient(135deg, rgba(200, 230, 201, 0.3), rgba(184, 212, 232, 0.3));
+}
+
+.level-emoji {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.level-name {
+    color: var(--color-text-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+}
+
+.level-description {
     color: var(--color-text-secondary);
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.lock-icon {
+    font-size: 2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.stars-earned {
+    font-size: 1.5rem;
+    margin-top: var(--spacing-sm);
+}
+
+.play-text {
+    display: block;
+    color: var(--color-accent-success);
+    font-weight: 600;
+    margin-top: var(--spacing-sm);
+}
+
+.level-hint {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+/* Level Header (when playing) */
+.level-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
 }
 
-.start-btn {
-    padding: var(--spacing-md) var(--spacing-xl);
-    border: none;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--color-calm-green), var(--color-calm-blue));
-    color: var(--color-text-primary);
-    font-size: 1.2rem;
+.back-arrow {
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-calm-blue);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-gentle);
+    color: var(--color-text-primary);
 }
 
-.start-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-medium);
+.back-arrow:hover {
+    background: var(--color-calm-blue);
+}
+
+.current-level-title {
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+    margin-right: 80px;
+    /* Balance with back button */
 }
 
 /* Quiz Container */
@@ -221,12 +277,28 @@
 .result-emoji {
     font-size: 5rem;
     margin-bottom: var(--spacing-md);
+    animation: bounce 0.6s ease infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-10px);
+    }
 }
 
 .result-title {
     color: var(--color-text-primary);
     font-size: 1.8rem;
     font-weight: 700;
+    margin-bottom: var(--spacing-md);
+}
+
+.stars-display {
+    font-size: 2.5rem;
     margin-bottom: var(--spacing-md);
 }
 
@@ -249,22 +321,63 @@
 .result-message {
     color: var(--color-text-secondary);
     font-size: 1.1rem;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
 }
 
-.restart-btn {
+.unlock-message {
+    background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+    color: #F57C00;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.result-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.restart-btn,
+.back-btn {
     padding: var(--spacing-md) var(--spacing-xl);
     border: none;
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--color-calm-green), var(--color-calm-blue));
-    color: var(--color-text-primary);
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-gentle);
 }
 
-.restart-btn:hover {
+.restart-btn {
+    background: linear-gradient(135deg, var(--color-calm-green), var(--color-calm-blue));
+    color: var(--color-text-primary);
+}
+
+.back-btn {
+    background: var(--color-bg-highlight);
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-calm-blue);
+}
+
+.restart-btn:hover,
+.back-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
 }
@@ -279,12 +392,20 @@
         font-size: 1.4rem;
     }
 
-    .scoreboard {
-        gap: var(--spacing-md);
+    .levels-container {
+        grid-template-columns: 1fr;
     }
 
-    .score-item {
-        min-width: 120px;
-        padding: var(--spacing-sm) var(--spacing-md);
+    .level-card {
+        padding: var(--spacing-lg);
+    }
+
+    .result-buttons {
+        flex-direction: column;
+    }
+
+    .restart-btn,
+    .back-btn {
+        width: 100%;
     }
 }
